@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace tugas_oop
 {
+    // sebuah Collection atau Interface yang berisi method-method untuk mengatur daftar buku
     interface IBook
     {
         void AddBook(Book Buku);
@@ -15,18 +16,20 @@ namespace tugas_oop
         void ListBooks();
     }
 
-    public class LibraryCatalog<T> : IBook
+    // penerapan generic class <T> 
+    public class LibraryCatalog<T> : IBook // menerapkan collection interface
     {
-
+        // dictionary untuk menampung daftar buku
         private Dictionary<string, Book> daftarBuku = new Dictionary<string, Book>();
 
+        // method tambah buku ke daftar
         public void AddBook(Book Buku)
         {
             var judul = Buku.title.ToLower();
-            //Console.WriteLine(judul);
             daftarBuku.Add(judul, Buku);
         }
 
+        // method cari buku dalam daftar
         public void FindBook(string title)
         {
             var cek = daftarBuku.ContainsKey(title.ToLower());
@@ -41,6 +44,7 @@ namespace tugas_oop
             Console.WriteLine();
         }
 
+        // method menampilkan daftar buku
         public void ListBooks()
         {
             Console.WriteLine("Jumlah: " + daftarBuku.Count());
@@ -52,11 +56,13 @@ namespace tugas_oop
             }
             Console.WriteLine();
         }
+        // method menghapus buku dari daftar sesuai nomor urutan yang dipilih
         public void RemoveBook(int id)
         {
             int index = 0;
             string judulBuku = "";
             Book buku;
+            // cari buku berdasarkan id yang dipilih saat input
             foreach (var item in daftarBuku)
             {
                 index++;
@@ -66,16 +72,19 @@ namespace tugas_oop
                     buku = item.Value;
                 }
             }
+            //  ada atai tidak buku dalam daftar
             if(judulBuku == "")
             {
                 Console.WriteLine("Buku Tidak Ditemukan");
             }
             else
             {
+                // jika ada hapus buku dari daftar
                 Console.WriteLine("Buku Ditemukan");
                 RemoveBook(daftarBuku[judulBuku.ToLower()]);
             }
         }
+        // method hapus buku dari daftar
         public void RemoveBook(Book Buku)
         {
             daftarBuku.Remove(Buku.title.ToLower());

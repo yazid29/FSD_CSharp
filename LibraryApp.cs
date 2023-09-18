@@ -10,19 +10,19 @@ namespace tugas_oop
 {
     internal class LibraryApp
     {
+        // main program
         static void Main(string[] args)
         {
+            // deklarasi daftar buku dengan menerapkan generic class Book
             LibraryCatalog<Book> library = new LibraryCatalog<Book>();
             Book baru = new Book("Bahasa Indonesia", "Yazid", 2020);
             Book baru2 = new Book("Database", "Yazid", 2021);
-            //Console.WriteLine(baru.title);
-            //library.Add("buku");
             library.AddBook(baru);
             library.AddBook(baru2);
-            //library.ListBooks();
             bool loopContinue = true;
             int pilihanMenu;
-            try { 
+            try {
+                // perulangan untuk pilihan menu sampai kondisi tidak terpenuhi atau loopContinue = false
                 while (loopContinue)
                 {
                     Console.WriteLine("Pilih Menu dibawah ini.");
@@ -87,6 +87,7 @@ namespace tugas_oop
                     }   
                 }
                 }
+            // menangkap error handling
             catch (Exception ex)
             {
                 Console.WriteLine("Terjadi Kesalahan Input");
